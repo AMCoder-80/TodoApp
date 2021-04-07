@@ -1,0 +1,1 @@
+web: gunicorn Todo_lisst.wsgi --log-file -
