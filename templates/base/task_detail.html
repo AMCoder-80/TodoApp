@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail of {{ task.title }}</title>
+</head>
+<body>
+<p><a href="{% url 'base:task_list' %}">Go Back</a></p>
+<hr>
+    <h2>Your task is: {{ task.title }} which is written in {{ task.created }}</h2>
+</body>
+</html>
