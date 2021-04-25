@@ -5,14 +5,21 @@ from django.contrib.auth.models import User
 
 
 class Task(models.Model):
+    CHOICE = (
+        ('H', 'High'),
+        ('M', 'Medium'),
+        ('L', 'Low'),
+    )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=30, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     complete = models.BooleanField(default=False)
-    created = models.DateTimeField(auto_now_add=True)
+    start_time = models.TimeField(null=True, blank=True)
+    end_time = models.TimeField(null=True, blank=True)
+    priority = models.CharField(max_length=10, choices=CHOICE)
 
     def __str__(self):
         return self.title
 
     class Meta:
-        ordering = ['complete']
+        ordering = ['complete', 'start_time']

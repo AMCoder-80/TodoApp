@@ -1,5 +1,6 @@
 {% extends 'base/main.html' %}
 {% block header %}
+
 {% endblock header %}
 {% block body %}
     <div class="header-bar">
@@ -29,13 +30,17 @@
             <div class="task-wrapper">
                 {% if task.complete %}
                     <div class="task-title">
-                        <div class="complete-icon"></div>
+                        <div class="complete-icon" style="background-color: {% if task.priority == 'H' %}
+                            rgb(255, 0, 0) {% elif task.priority == 'L' %} rgb(255, 255, 0) {% else %} rgb(0, 255, 0)
+                            {% endif %}"></div>
                         <i><s><a href="{% url 'base:task_update' task.id %}">{{ task }}</a></s></i>
                     </div>
                     <a class="delete-link" href="{% url 'base:task_delete' task.id %}">&#215;</a>
                 {% else %}
                     <div class="task-title">
-                        <div class="incomplete-icon"></div>
+                        <div class="incomplete-icon" style="background-color: {% if task.priority == 'H' %}
+                            rgb(255, 0, 0) {% elif task.priority == 'L' %} rgb(255, 255, 0) {% else %} rgb(0, 255, 0)
+                            {% endif %}"></div>
                         <a href="{% url 'base:task_update' task.id %}">{{ task }}</a>
                     </div>
                     <a class="delete-link" href="{% url 'base:task_delete' task.id %}">&#215;</a>
